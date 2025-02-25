@@ -9,7 +9,7 @@ const server = http.createServer(app);
 // Configuração do CORS
 app.use(
     cors({
-        origin: 'http://localhost:5173', // URL do frontend
+        origin: 'https://chat-real-time-delta.vercel.app/', // URL do frontend
         methods: ['GET', 'POST'],
     })
 );
@@ -17,7 +17,7 @@ app.use(
 // Configuração do Socket.IO
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:5173', // URL do frontend
+        origin: 'https://chat-real-time-delta.vercel.app/', // URL do frontend
         methods: ['GET', 'POST'],
     },
 });
