@@ -1,6 +1,6 @@
 const express = require('express');
 const http = require('http');
-const socketIo = require('socket.io');
+const { Server } = require('socket.io');
 const cors = require('cors');
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(
 );
 
 // Configuração do Socket.IO
-const io = socketIo(server, {
+const io = new Server(server, {
     cors: {
         origin: 'http://localhost:5173', // URL do frontend
         methods: ['GET', 'POST'],
@@ -49,8 +49,9 @@ io.on('connection', (socket) => {
 });
 
 // Inicia o servidor na porta 3001
-server.listen(3001, () => {
-    console.log('Servidor rodando na porta 3001');
+const PORT = process.env.PORT || 3001;
+server.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
 
 // Exporta o app para o Vercel
